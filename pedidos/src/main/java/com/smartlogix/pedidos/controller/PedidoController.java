@@ -38,6 +38,14 @@ public class PedidoController {
         return new ResponseEntity<>(nuevoPedido, HttpStatus.CREATED);
     }
 
+    // Endpoint GET para obtener un pedido por su ID
+    @GetMapping("/{id}")
+    public ResponseEntity<Pedido> obtenerPedido(@PathVariable Long id) {
+        return pedidoService.obtenerPedidoPorId(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     // Endpoint PUT para editar un pedido (estado o items)
     @PutMapping("/{id}")
     public ResponseEntity<Pedido> actualizarPedido(@PathVariable Long id, @RequestBody Pedido pedidoDetalles) {
