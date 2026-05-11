@@ -29,8 +29,9 @@ public class Pedido {
     @Column(nullable = false)
     private String estado;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private String cliente;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "pedido_id")
     private List<ItemPedido> items;
 }
